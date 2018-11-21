@@ -5,7 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -15,7 +18,7 @@ import butterknife.ButterKnife;
 public class NewsAdapter extends ArrayAdapter<News> {
 
     @BindView(R.id.url_to_image)
-    TextView urlToImageView;
+    ImageView urlToImageView;
 
     @BindView(R.id.title)
     TextView titleView;
@@ -37,7 +40,8 @@ public class NewsAdapter extends ArrayAdapter<News> {
         ButterKnife.bind(this, listItemView);
         News currentNews = getItem(position);
 
-        urlToImageView.setText(currentNews.getmImage());
+//        urlToImageView.setText(currentNews.getmImage());
+        Picasso.with(getContext()).load(currentNews.getmImage()).placeholder(R.drawable.ic_launcher_background).into(urlToImageView);
         titleView.setText(currentNews.getmTitle());
         publishedAtView.setText(currentNews.getmPublishedAt());
 

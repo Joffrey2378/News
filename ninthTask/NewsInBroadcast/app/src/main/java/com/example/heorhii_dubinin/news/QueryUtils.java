@@ -46,9 +46,6 @@ public class QueryUtils {
                 String publishedAt = currentNews.getString("publishedAt");
                 String urlToImage = currentNews.getString("urlToImage");
 
-//                Date dateObject = new Date(publishedAt);
-//                SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM DD, yyyy");
-
                 News news = new News(title, publishedAt, urlToImage);
                 breakingNews.add(news);
             }
