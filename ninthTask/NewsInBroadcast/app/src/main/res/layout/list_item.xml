@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="67dp"
     android:orientation="horizontal"
     android:padding="8dp">
 
@@ -10,21 +10,16 @@
         android:id="@+id/url_to_image"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="3"
-        android:paddingLeft="8dp"
+        android:paddingStart="8dp"
+        tools:ignore="RtlSymmetry"
         tools:text="Головний рабин України наполягає, що за синагогою стежило таки НАБУ" />
-
-    <TextView
-        android:id="@+id/published_at"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        tools:text="2018-11-15" />
 
 </LinearLayout>

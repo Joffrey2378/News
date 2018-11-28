@@ -8,7 +8,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class QueryUtils {
+class QueryUtils {
 
     private static final String SAMPLE_JSON_RESPONSE = "{\"status\":\"ok\",\"totalResults\":20,\"articles\":[" +
             "{\"source\":{\"id\":null,\"name\":\"Tsn.ua\"},\"author\":null,\"title\":\"Кабмін підвищив вартість електронної візи до України\",\"description\":null,\"url\":\"https://tsn.ua/ukrayina/kabmin-pidvischiv-vartist-elektronnoyi-vizi-do-ukrayini-1250508.html\",\"urlToImage\":null,\"publishedAt\":\"2018-11-16T09:58:49Z\",\"content\":null}," +
@@ -32,7 +32,7 @@ public class QueryUtils {
             "{\"source\":{\"id\":null,\"name\":\"Radiosvoboda.org\"},\"author\":\"Марія Щур\",\"title\":\"Окупований Крим і скандал довкола прем'єра Чехії: син готовий свідчити проти батька\",\"description\":\"Протопопов хотів відмовити Енді від подорожі: «Кривий Ріг – це ж не земля обітована».\",\"url\":\"https://www.radiosvoboda.org/a/29602835.html\",\"urlToImage\":\"https://gdb.rferl.org/A1B81C45-E5D9-4336-B520-9E1D94A03F8A_cx0_cy3_cw0_w1200_r1_s.jpg\",\"publishedAt\":\"2018-11-15T19:13:47Z\",\"content\":\"Син чеського прем’єр-міністра Андрей Бабіш-молодший звинувачує свого батька у брехні та каже, що готовий свідчити у справі свого «викрадення». Бабіш-молодший стверджує, що його батько вигадує, ніби він є психічно хворий. Про це Андрей Бабіш-молодший написав в… [+10587 chars]\"}," +
             "{\"source\":{\"id\":null,\"name\":\"Zik.ua\"},\"author\":null,\"title\":\"Головний рабин України наполягає, що за синагогою стежило таки НАБУ\",\"description\":null,\"url\":\"https://zik.ua/news/2018/11/15/golovnyy_rabyn_ukrainy_napolyagaie_shcho_za_synagogoyu_stezhylo_nabu_1449095\",\"urlToImage\":null,\"publishedAt\":\"2018-11-15T18:36:00Z\",\"content\":null}]}";
 
-    public static ArrayList<News> extractNews() {
+    static ArrayList<News> extractNews() {
 
         ArrayList<News> breakingNews = new ArrayList<>();
 
@@ -43,10 +43,9 @@ public class QueryUtils {
             for (int i = 0; i < newsArray.length(); i++) {
                 JSONObject currentNews = newsArray.getJSONObject(i);
                 String title = currentNews.getString("title");
-                String publishedAt = currentNews.getString("publishedAt");
                 String urlToImage = currentNews.getString("urlToImage");
 
-                News news = new News(title, publishedAt, urlToImage);
+                News news = new News(urlToImage, title);
                 breakingNews.add(news);
             }
         } catch (JSONException e) {

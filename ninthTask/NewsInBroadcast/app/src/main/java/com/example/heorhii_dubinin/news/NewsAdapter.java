@@ -1,50 +1,62 @@
 package com.example.heorhii_dubinin.news;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class NewsAdapter extends ArrayAdapter<News> {
+public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
-    @BindView(R.id.url_to_image)
-    ImageView urlToImageView;
+    private ArrayList<News> mBreakingNews;
+    private Context mContext;
 
-    @BindView(R.id.title)
-    TextView titleView;
+    NewsAdapter(ArrayList<News> breakingNews, Context context) {
+        this.mBreakingNews = breakingNews;
+        this.mContext = context;
+    }
 
-    @BindView(R.id.published_at)
-    TextView publishedAtView;
-
-    public NewsAdapter(Context context, List<News> breakingNews) {
-        super(context, 0, breakingNews);
+    @NonNull
+    @Override
+    public NewsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item, viewGroup, false);
+        return new ViewHolder(view);
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        View listItemView = convertView;
-        if (listItemView == null) {
-            listItemView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
+    public void onBindViewHolder(@NonNull NewsAdapter.ViewHolder viewHolder, int i) {
+        News news = mBreakingNews.get(i);
+        Picasso.with(mContext).load(news.getmImage()).placeholder(R.drawable.ic_launcher_background).into(viewHolder.imageView);
+        viewHolder.titleView.setText((mBreakingNews.get(i).getmTitle()));
+    }
+
+    @Override
+    public int getItemCount() {
+        return mBreakingNews.size();
+    }
+
+    class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.url_to_image)
+        ImageView imageView;
+
+        @BindView(R.id.title)
+        TextView titleView;
+
+        ViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            ButterKnife.bind(this, itemView);
+
         }
-
-        ButterKnife.bind(this, listItemView);
-        News currentNews = getItem(position);
-
-//        urlToImageView.setText(currentNews.getmImage());
-        Picasso.with(getContext()).load(currentNews.getmImage()).placeholder(R.drawable.ic_launcher_background).into(urlToImageView);
-        titleView.setText(currentNews.getmTitle());
-        publishedAtView.setText(currentNews.getmPublishedAt());
-
-        return listItemView;
     }
 }

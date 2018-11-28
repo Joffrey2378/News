@@ -1,38 +1,20 @@
 package com.example.heorhii_dubinin.news;
 
-public class News {
+class News {
 
     private String mTitle;
-    private String mPublishedAt;
     private String mImage;
 
-    public News(String title, String publishedAt, String image) {
-        this.mTitle = title;
-        this.mPublishedAt = publishedAt;
+    News(String image, String title) {
         this.mImage = image;
+        this.mTitle = title;
     }
 
-    public String getmTitle() {
+    String getmTitle() {
         return mTitle;
     }
 
-    public void setmTitle(String mTitle) {
-        this.mTitle = mTitle;
-    }
-
-    public String getmPublishedAt() {
-        return mPublishedAt;
-    }
-
-    public void setmPublishedAt(String mPublishedAt) {
-        this.mPublishedAt = mPublishedAt;
-    }
-
-    public String getmImage() {
+    String getmImage() {
         return mImage;
-    }
-
-    public void setmImage(String mImage) {
-        this.mImage = mImage;
     }
 }
