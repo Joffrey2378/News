@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class NewsActivity extends AppCompatActivity {
 
@@ -25,6 +26,9 @@ public class NewsActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<News> mBrakingNews;
+    public static final String HTTPS_REQUEST_URL =
+            "https://newsapi.org/v2/top-headlines?country=ua&apiKey=eefa8f5b92b24ff7993231986bfa9a96";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +36,7 @@ public class NewsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mRecyclerView = findViewById(R.id.recycler);
-        mBrakingNews = QueryUtils.extractNews();
+        mBrakingNews = new ArrayList<>();
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
@@ -41,6 +45,22 @@ public class NewsActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
+
+        MyAsync myAsync = new MyAsync(new MyAsync.IResultListener() {
+            @Override
+            public void onResult(String result) {
+                List<News> breakingNews = QueryUtils.extractNews(result);
+                mBrakingNews.addAll(breakingNews);
+                mAdapter.notifyDataSetChanged();
+            }
+
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
+        myAsync.execute(HTTPS_REQUEST_URL);
         scheduleJob(/*v*/);
 
 //        schedule = findViewById(R.id.schedule);

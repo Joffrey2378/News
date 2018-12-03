@@ -36,7 +36,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull NewsAdapter.ViewHolder viewHolder, int i) {
         News news = mBreakingNews.get(i);
-        Picasso.with(mContext).load(news.getmImage()).placeholder(R.drawable.ic_launcher_background).into(viewHolder.imageView);
+        Picasso.with(mContext).load(news.getmImage()).placeholder(R.drawable.news_icon).into(viewHolder.imageView);
         viewHolder.titleView.setText((mBreakingNews.get(i).getmTitle()));
     }
 

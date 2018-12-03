@@ -13,7 +13,6 @@ import android.util.Log;
 public class MyJobService extends JobService {
 
     public static final String TAG = "JobService";
-    public static final String HTTPS_NEWS_API = "https://newsapi.org/v2/top-headlines?country=ua&apiKey=eefa8f5b92b24ff7993231986bfa9a96";
     private boolean jobCancelled = false;
 
     @Override
@@ -23,29 +22,12 @@ public class MyJobService extends JobService {
     }
 
     private void doBackgroundWork(JobParameters params) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
                 showNotification(getApplicationContext(), "" + TAG, "Fresh news!");
 
-                MyAsync myAsync = new MyAsync(new MyAsync.Listener() {
-                    @Override
-                    public void onLoaded(String json) {
-//                        List<News> brackingNews = QueryUtils.extractNews(json);
-                    }
-
-                    @Override
-                    public void onError(String message) {
-
-                    }
-                });
-                myAsync.execute(HTTPS_NEWS_API);
                 if (jobCancelled) {
                     return;
                 }
                 Log.d(TAG, "News Updated");
-            }
-        }).start();
         jobFinished(params, false);
     }
 

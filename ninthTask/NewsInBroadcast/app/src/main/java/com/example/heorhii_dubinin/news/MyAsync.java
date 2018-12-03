@@ -10,33 +10,31 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class MyAsync extends AsyncTask<String, Void, String> {
+public class MyAsync extends AsyncTask<String, Integer, String> {
 
-    public static final String TAG = "Async";
+    private static final String LOG_TAG = MyAsync.class.getSimpleName();
+    private IResultListener listener;
 
-    private Listener mListener;
-
-    public MyAsync(Listener listener) {
-        mListener = listener;
+    public MyAsync(IResultListener listener) {
+        this.listener = listener;
     }
 
     @Override
-    protected String doInBackground(String... strings) {
+    protected String doInBackground(String... params) {
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
         String json = null;
 
         try {
-            URL url = new URL(strings[0]);
+            URL url = new URL(params[0]);
             urlConnection = (HttpURLConnection) url.openConnection();
-
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
 
             InputStream inputStream = urlConnection.getInputStream();
             StringBuffer buffer = new StringBuffer();
             if (inputStream == null) {
-                mListener.onError("CONNECTION FAILED");
+                listener.onError("ERROR");
                 return null;
             }
             reader = new BufferedReader(new InputStreamReader(inputStream));
@@ -46,34 +44,39 @@ public class MyAsync extends AsyncTask<String, Void, String> {
                 buffer.append(line + "\n");
 
             if (buffer.length() == 0) {
-                mListener.onError("EMPTY_RESPONSE");
+                listener.onError("ERROR");
                 return null;
             }
-
             json = buffer.toString();
         } catch (IOException e) {
-            Log.e(TAG, "ERROR", e);
-            mListener.onError(e.getMessage());
+            Log.e(LOG_TAG, "ERROR", e);
+            listener.onError(e.getMessage());
         } finally {
             if (urlConnection != null) urlConnection.disconnect();
-            {
-                if (reader != null) {
-                    try {
-                        reader.close();
-                    } catch (final IOException e) {
-                        Log.e(TAG, "CLOSING_STREAM", e);
-                        mListener.onError(e.getMessage());
-                    }
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (final IOException e) {
+                    Log.e(LOG_TAG, "ERROR", e);
+                    listener.onError(e.getMessage());
                 }
             }
-            return json;
         }
+        return json;
     }
 
-    public interface Listener {
+    @Override
+    protected void onPostExecute(String result) {
+        super.onPostExecute(result);
+        if (result == null) {
+            return;
+        }
+        listener.onResult(result);
+    }
 
-        void onLoaded(String json);
+    public interface IResultListener {
+        void onResult(String result);
 
-        void onError(String message);
+        void onError(String error);
     }
 }
