@@ -10,12 +10,10 @@ import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import java.util.List;
-
 public class MyJobService extends JobService {
 
     public static final String TAG = "JobService";
-    public static final String HTTPS_NEWSAPI = "https://newsapi.org/v2/top-headlines?country=ua&apiKey=eefa8f5b92b24ff7993231986bfa9a96";
+    public static final String HTTPS_NEWS_API = "https://newsapi.org/v2/top-headlines?country=ua&apiKey=eefa8f5b92b24ff7993231986bfa9a96";
     private boolean jobCancelled = false;
 
     @Override
@@ -33,7 +31,7 @@ public class MyJobService extends JobService {
                 MyAsync myAsync = new MyAsync(new MyAsync.Listener() {
                     @Override
                     public void onLoaded(String json) {
-                        List<News> brackingNews = QueryUtils.extractNews(json);
+//                        List<News> brackingNews = QueryUtils.extractNews(json);
                     }
 
                     @Override
@@ -41,23 +39,10 @@ public class MyJobService extends JobService {
 
                     }
                 });
-                myAsync.execute(HTTPS_NEWSAPI);
+                myAsync.execute(HTTPS_NEWS_API);
                 if (jobCancelled) {
                     return;
                 }
-//                for (int i = 0; i < 7; i++) {
-//                    showNotification(getApplicationContext(), "" + TAG, "You better keep coding " + i);
-//                    Log.d(TAG, "news: " + i);
-//                    if (jobCancelled) {
-//                        return;
-//                    }
-//
-//                    try {
-//                        Thread.sleep(2000);
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
                 Log.d(TAG, "News Updated");
             }
         }).start();

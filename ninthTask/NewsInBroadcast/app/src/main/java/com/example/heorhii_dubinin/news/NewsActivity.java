@@ -6,6 +6,7 @@ import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
@@ -16,8 +17,10 @@ import java.util.ArrayList;
 public class NewsActivity extends AppCompatActivity {
 
     private static final String TAG = "News";
+
     //    Button schedule;
     Button cancel;
+
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -28,16 +31,16 @@ public class NewsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        mRecyclerView = findViewById(R.id.recycler);
-//        mBrakingNews = QueryUtils.extractNews();
-//        mLayoutManager = new LinearLayoutManager(this);
-//        mRecyclerView.setLayoutManager(mLayoutManager);
-//
-//        mLayoutManager = (new LinearLayoutManager(this));
-//        mAdapter = new NewsAdapter(mBrakingNews, this);
-//        mRecyclerView.setLayoutManager(mLayoutManager);
-//        mRecyclerView.setAdapter(mAdapter);
-//        mAdapter.notifyDataSetChanged();
+        mRecyclerView = findViewById(R.id.recycler);
+        mBrakingNews = QueryUtils.extractNews();
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        mLayoutManager = (new LinearLayoutManager(this));
+        mAdapter = new NewsAdapter(mBrakingNews, this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
         scheduleJob(/*v*/);
 
 //        schedule = findViewById(R.id.schedule);
