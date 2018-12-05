@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 class QueryUtils {
+    private static final String TAG = "QueryUtils";
 //    private static final String SAMPLE_JSON_RESPONSE = "{\"status\":\"ok\",\"totalResults\":20,\"articles\":[" +
 //            "{\"source\":{\"id\":null,\"name\":\"Tsn.ua\"},\"author\":null,\"title\":\"Кабмін підвищив вартість електронної візи до України\",\"description\":null,\"url\":\"https://tsn.ua/ukrayina/kabmin-pidvischiv-vartist-elektronnoyi-vizi-do-ukrayini-1250508.html\",\"urlToImage\":null,\"publishedAt\":\"2018-11-16T09:58:49Z\",\"content\":null}," +
 //            "{\"source\":{\"id\":null,\"name\":\"Espreso.tv\"},\"author\":null,\"title\":\"У київському торгівельному центрі обікрали народного депутата, - ЗМІ\",\"description\":null,\"url\":\"https://espreso.tv/news/2018/11/16/v_kyevskom_torgovom_centre_obokraly_narodnogo_deputata_smy\",\"urlToImage\":null,\"publishedAt\":\"2018-11-16T09:50:21Z\",\"content\":null}," +
@@ -43,10 +44,34 @@ class QueryUtils {
                 JSONObject currentNews = newsArray.getJSONObject(i);
                 String title = currentNews.getString("title");
                 String urlToImage = currentNews.getString("urlToImage");
+                String sourceName = currentNews.getJSONObject("source").getString("name");
+                String description = currentNews.getString("description");
+                String publishedAt = currentNews.getString("publishedAt");
 
-                News news = new News(urlToImage, title);
+//                Date dateObject = new Date(publishedAt);
+//                SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM DD, yyyy");
+
+                News news = new News(urlToImage, title, sourceName, description, publishedAt);
                 breakingNews.add(news);
             }
+            Log.d(TAG, "extractNews: " + breakingNews.size());
+
+//            for (int i = 0; i < newsArray.length(); i++) {
+//                JSONObject currentNews = newsArray.getJSONObject(i);
+//                String urlToImage = currentNews.getString("urlToImage");
+//                String title = currentNews.getString("title");
+//                String sourceName = currentNews.getString("name");
+//                String description = currentNews.getString("description");
+//                String publishedAt = currentNews.getString("publishedAt");
+//
+//                Date dateObject = new Date(publishedAt);
+//                SimpleDateFormat dateFormatter = new SimpleDateFormat("MMM DD, yyyy");
+//
+//
+//
+//                News news = new News(urlToImage, title/*, sourceName, description, publishedAt*/);
+//                breakingNews.add(news);
+//            }
         } catch (JSONException e) {
             Log.e("QueryUtils", "Problem parsing the news JSON results", e);
         }

@@ -10,7 +10,7 @@
     <ImageView
         android:id="@+id/url_to_image"
         android:layout_width="298dp"
-        android:layout_height="152dp"
+        android:layout_height="176dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -31,7 +31,7 @@
         android:paddingStart="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description"
+        app:layout_constraintTop_toBottomOf="@+id/url_to_image"
         tools:ignore="NestedWeights,RtlSymmetry"
         tools:text="Головний рабин України наполягає, що за синагогою стежило таки НАБУ" />
 
@@ -40,13 +40,13 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
         android:layout_weight="1"
         android:paddingStart="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/url_to_image"
+        app:layout_constraintTop_toBottomOf="@+id/title"
         tools:ignore="RtlSymmetry"
         tools:text="Головний рабин України наполягає, що за синагогою стежило таки НАБУ" />
 
@@ -61,8 +61,9 @@
         android:gravity="bottom|end"
         android:paddingEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintTop_toBottomOf="@+id/description"
         tools:ignore="NestedWeights,RtlSymmetry"
         tools:text="Zik.ua" />
 

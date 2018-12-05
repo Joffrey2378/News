@@ -18,6 +18,23 @@ import butterknife.ButterKnife;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
+    private OnItemClickListener mListener;
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull NewsAdapter.ViewHolder viewHolder, int i) {
+        News news = mBreakingNews.get(i);
+        Picasso.with(mContext)
+                .load(news.getmImage())
+                .placeholder(R.drawable.news_icon)
+                .into(viewHolder.imageView);
+
+        viewHolder.titleView.setText((mBreakingNews.get(i).getmTitle()));
+    }
+
     private ArrayList<News> mBreakingNews;
     private Context mContext;
 
@@ -33,11 +50,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         return new ViewHolder(view);
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull NewsAdapter.ViewHolder viewHolder, int i) {
-        News news = mBreakingNews.get(i);
-        Picasso.with(mContext).load(news.getmImage()).placeholder(R.drawable.news_icon).into(viewHolder.imageView);
-        viewHolder.titleView.setText((mBreakingNews.get(i).getmTitle()));
+    public interface OnItemClickListener {
+        void onItemClick(int position/*, View v*/);
     }
 
     @Override
@@ -45,18 +59,27 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         return mBreakingNews.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    public /*static*/ class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.url_to_image)
-        ImageView imageView;
+        protected ImageView imageView;
 
         @BindView(R.id.title)
-        TextView titleView;
+        protected TextView titleView;
 
-        ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             ButterKnife.bind(this, itemView);
-
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mListener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            mListener.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 }

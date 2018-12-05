@@ -4,6 +4,7 @@ package com.example.heorhii_dubinin.news;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,20 +16,24 @@ import android.widget.Button;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewsActivity extends AppCompatActivity {
+public class NewsActivity extends AppCompatActivity implements NewsAdapter.OnItemClickListener {
 
     private static final String TAG = "News";
+    public static final String EXTRA_IMAGE = "imageUrl";
+    public static final String EXTRA_TITLE = "title";
+    public static final String EXTRA_SOURCE = "NAME";
+    public static final String EXTRA_DESCRIPTION = "description";
+    public static final String EXTRA_DATE = "date";
 
     //    Button schedule;
     Button cancel;
 
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    public static final String HTTPS_REQUEST_URL = "https://" +
+            "newsapi.org/v2/top-headlines?country=ua&apiKey=eefa8f5b92b24ff7993231986bfa9a96";
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<News> mBrakingNews;
-    public static final String HTTPS_REQUEST_URL =
-            "https://newsapi.org/v2/top-headlines?country=ua&apiKey=eefa8f5b92b24ff7993231986bfa9a96";
-
+    private NewsAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +50,7 @@ public class NewsActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
+        mAdapter.setOnItemClickListener(NewsActivity.this);
 
         MyAsync myAsync = new MyAsync(new MyAsync.IResultListener() {
             @Override
@@ -101,5 +107,19 @@ public class NewsActivity extends AppCompatActivity {
         JobScheduler scheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
         scheduler.cancel(123);
         Log.d(TAG, "Job cancelled");
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Intent intentItemActivity = new Intent(this, ItemActivity.class);
+        News clckedItem = mBrakingNews.get(position);
+
+        intentItemActivity.putExtra(EXTRA_IMAGE, clckedItem.getmImage());
+        intentItemActivity.putExtra(EXTRA_TITLE, clckedItem.getmTitle());
+        intentItemActivity.putExtra(EXTRA_SOURCE, clckedItem.getmTitle());
+        intentItemActivity.putExtra(EXTRA_DESCRIPTION, clckedItem.getmTitle());
+        intentItemActivity.putExtra(EXTRA_DATE, clckedItem.getmTitle());
+
+        startActivity(intentItemActivity);
     }
 }
