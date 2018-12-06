@@ -20,7 +20,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
     private OnItemClickListener mListener;
 
-    public void setOnItemClickListener(OnItemClickListener listener) {
+    void setOnItemClickListener(OnItemClickListener listener) {
         mListener = listener;
     }
 
@@ -46,12 +46,14 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
     @NonNull
     @Override
     public NewsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item, viewGroup, false);
+        View view = LayoutInflater
+                .from(viewGroup.getContext())
+                .inflate(R.layout.list_item, viewGroup, false);
         return new ViewHolder(view);
     }
 
     public interface OnItemClickListener {
-        void onItemClick(int position/*, View v*/);
+        void onItemClick(int position);
     }
 
     @Override
@@ -59,14 +61,14 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         return mBreakingNews.size();
     }
 
-    public /*static*/ class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.url_to_image)
-        protected ImageView imageView;
+        ImageView imageView;
 
         @BindView(R.id.title)
-        protected TextView titleView;
+        TextView titleView;
 
-        public ViewHolder(@NonNull View itemView) {
+        ViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(new View.OnClickListener() {

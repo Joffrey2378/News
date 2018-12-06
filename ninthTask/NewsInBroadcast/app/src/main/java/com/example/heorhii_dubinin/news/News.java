@@ -8,12 +8,7 @@ class News {
     private String mDescription;
     private String mPublishedAt;
 
-//    News(String image, String title) {
-//        this.mImage = image;
-//        this.mTitle = title;
-//    }
-
-    public News(String mImage, String mTitle, String mSourceName, String mDescription, String mPublishedAt) {
+    News(String mImage, String mTitle, String mSourceName, String mDescription, String mPublishedAt) {
         this.mImage = mImage;
         this.mTitle = mTitle;
         this.mSourceName = mSourceName;
@@ -40,15 +35,15 @@ class News {
         return mImage;
     }
 
-    public String getmSourceName() {
+    String getmSourceName() {
         return mSourceName;
     }
 
-    public String getmDescription() {
+    String getmDescription() {
         return mDescription;
     }
 
-    public String getmPublishedAt() {
+    String getmPublishedAt() {
         return mPublishedAt;
     }
 }

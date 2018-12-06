@@ -13,6 +13,7 @@ import static com.example.heorhii_dubinin.news.NewsActivity.EXTRA_DATE;
 import static com.example.heorhii_dubinin.news.NewsActivity.EXTRA_DESCRIPTION;
 import static com.example.heorhii_dubinin.news.NewsActivity.EXTRA_IMAGE;
 import static com.example.heorhii_dubinin.news.NewsActivity.EXTRA_SOURCE;
+import static com.example.heorhii_dubinin.news.NewsActivity.EXTRA_TITLE;
 
 public class ItemActivity extends AppCompatActivity {
 
@@ -26,7 +27,7 @@ public class ItemActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String imageUrl = intent.getStringExtra(EXTRA_IMAGE);
-        String title = intent.getStringExtra(Intent.EXTRA_TITLE);
+        String title = intent.getStringExtra(EXTRA_TITLE);
         String source = intent.getStringExtra(EXTRA_SOURCE);
         String description = intent.getStringExtra(EXTRA_DESCRIPTION);
         String date = intent.getStringExtra(EXTRA_DATE);
@@ -43,6 +44,4 @@ public class ItemActivity extends AppCompatActivity {
         descriptionView.setText(description);
         dateView.setText(date);
     }
-
-
 }

@@ -21,11 +21,10 @@ public class NewsActivity extends AppCompatActivity implements NewsAdapter.OnIte
     private static final String TAG = "News";
     public static final String EXTRA_IMAGE = "imageUrl";
     public static final String EXTRA_TITLE = "title";
-    public static final String EXTRA_SOURCE = "NAME";
+    public static final String EXTRA_SOURCE = "name";
     public static final String EXTRA_DESCRIPTION = "description";
     public static final String EXTRA_DATE = "date";
 
-    //    Button schedule;
     Button cancel;
 
     private RecyclerView mRecyclerView;
@@ -60,22 +59,12 @@ public class NewsActivity extends AppCompatActivity implements NewsAdapter.OnIte
                 mAdapter.notifyDataSetChanged();
             }
 
-
             @Override
             public void onError(String error) {
-
             }
         });
         myAsync.execute(HTTPS_REQUEST_URL);
-        scheduleJob(/*v*/);
-
-//        schedule = findViewById(R.id.schedule);
-//        schedule.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                scheduleJob(v);
-//            }
-//        });
+        scheduleJob();
 
         cancel = findViewById(R.id.cancel);
         cancel.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +75,7 @@ public class NewsActivity extends AppCompatActivity implements NewsAdapter.OnIte
         });
     }
 
-    public void scheduleJob(/*View view*/) {
+    public void scheduleJob() {
         ComponentName componentName = new ComponentName(this, MyJobService.class);
         JobInfo info = new JobInfo.Builder(321, componentName)
                 .setRequiresCharging(false)
@@ -116,9 +105,9 @@ public class NewsActivity extends AppCompatActivity implements NewsAdapter.OnIte
 
         intentItemActivity.putExtra(EXTRA_IMAGE, clckedItem.getmImage());
         intentItemActivity.putExtra(EXTRA_TITLE, clckedItem.getmTitle());
-        intentItemActivity.putExtra(EXTRA_SOURCE, clckedItem.getmTitle());
-        intentItemActivity.putExtra(EXTRA_DESCRIPTION, clckedItem.getmTitle());
-        intentItemActivity.putExtra(EXTRA_DATE, clckedItem.getmTitle());
+        intentItemActivity.putExtra(EXTRA_SOURCE, clckedItem.getmSourceName());
+        intentItemActivity.putExtra(EXTRA_DESCRIPTION, clckedItem.getmDescription());
+        intentItemActivity.putExtra(EXTRA_DATE, clckedItem.getmPublishedAt());
 
         startActivity(intentItemActivity);
     }
