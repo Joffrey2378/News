@@ -1,7 +1,13 @@
 package com.example.heorhii_dubinin.news;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
+@Entity(tableName = "news_table")
 class News {
 
+    @PrimaryKey(autoGenerate = true)
+    private int id;
     private String mImage;
     private String mTitle;
     private String mSourceName;
@@ -25,6 +31,14 @@ class News {
                 ", mDescription='" + mDescription + '\'' +
                 ", mPublishedAt='" + mPublishedAt + '\'' +
                 '}';
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     String getmTitle() {
