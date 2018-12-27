@@ -4,7 +4,7 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
 @Entity(tableName = "news_table")
-class News {
+class NewsPiece {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -14,23 +14,12 @@ class News {
     private String description;
     private String publishedAt;
 
-    News(String image, String title, String sourceName, String description, String publishedAt) {
+    NewsPiece(String image, String title, String sourceName, String description, String publishedAt) {
         this.image = image;
         this.title = title;
         this.sourceName = sourceName;
         this.description = description;
         this.publishedAt = publishedAt;
-    }
-
-    @Override
-    public String toString() {
-        return "News{" +
-                "image='" + image + '\'' +
-                ", title='" + title + '\'' +
-                ", sourceName='" + sourceName + '\'' +
-                ", description='" + description + '\'' +
-                ", publishedAt='" + publishedAt + '\'' +
-                '}';
     }
 
     public int getId() {
@@ -81,31 +70,14 @@ class News {
         this.publishedAt = publishedAt;
     }
 
-//    public int getId() {
-//        return id;
-//    }
-//
-//    public void setId(int id) {
-//        this.id = id;
-//    }
-//
-//    public String getTitle() {
-//        return title;
-//    }
-//
-//    public String getImage() {
-//        return image;
-//    }
-//
-//    public String getSourceName() {
-//        return sourceName;
-//    }
-//
-//    public String getDescription() {
-//        return description;
-//    }
-//
-//    public String getPublishedAt() {
-//        return publishedAt;
-//    }
+    @Override
+    public String toString() {
+        return "NewsPiece{" +
+                "image='" + image + '\'' +
+                ", title='" + title + '\'' +
+                ", sourceName='" + sourceName + '\'' +
+                ", description='" + description + '\'' +
+                ", publishedAt='" + publishedAt + '\'' +
+                '}';
+    }
 }

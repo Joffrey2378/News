@@ -9,7 +9,7 @@ import java.util.List;
 public class NewsRepository {
 
     private NewsDao newsDao;
-    private LiveData<List<News>> allNews;
+    private LiveData<List<NewsPiece>> allNews;
 
     NewsRepository(Application application) {
         NewsDatabase database = NewsDatabase.getInstance(application);
@@ -17,22 +17,22 @@ public class NewsRepository {
         allNews = newsDao.getAllNews();
     }
 
-    public void insert(News news) {
-        new InsertNewsAsyncTask(newsDao).execute(news);
+    public void insert(NewsPiece newsPiece) {
+        new InsertNewsAsyncTask(newsDao).execute(newsPiece);
     }
 
-//    public void update(News news) {}
-//    public void delete(News news) {}
+//    public void update(NewsPiece news) {}
+//    public void delete(NewsPiece news) {}
 
     public void deleteExtraNews() {
         new DeleteExtraNewsAsyncTask(newsDao).execute();
     }
 
-    public LiveData<List<News>> getAllNews() {
+    public LiveData<List<NewsPiece>> getAllNews() {
         return allNews;
     }
 
-    private static class InsertNewsAsyncTask extends AsyncTask<News, Void, Void> {
+    private static class InsertNewsAsyncTask extends AsyncTask<NewsPiece, Void, Void> {
         private NewsDao newsDao;
 
         private InsertNewsAsyncTask(NewsDao newsDao) {
@@ -40,8 +40,8 @@ public class NewsRepository {
         }
 
         @Override
-        protected Void doInBackground(News... news) {
-            newsDao.insert(news[0]);
+        protected Void doInBackground(NewsPiece... newsPieces) {
+            newsDao.insert(newsPieces[0]);
             return null;
         }
     }

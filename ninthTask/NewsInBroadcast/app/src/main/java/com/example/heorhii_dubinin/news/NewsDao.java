@@ -2,10 +2,8 @@ package com.example.heorhii_dubinin.news;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
-import android.arch.persistence.room.Update;
 
 import java.util.List;
 
@@ -13,19 +11,19 @@ import java.util.List;
 public interface NewsDao {
 
     @Insert
-    void insert(News news);
+    void insert(NewsPiece newsPiece);
 
 //    @Update
-//    void update(News news);
+//    void update(NewsPiece news);
 
 //    @Delete
-//    void delete(News news);
+//    void delete(NewsPiece news);
 
-    @Query("DELETE FROM news_table WHERE id NOT IN (SELECT id FROM news_table ORDER BY id DESC LIMIT 49);")
+    @Query("DELETE FROM NewsPiece WHERE id NOT IN (SELECT id FROM NewsPiece ORDER BY id DESC LIMIT 49);")
     void deleteExtraNews();
 
-    @Query("SELECT * FROM news_table ORDER BY id DESC")
-    LiveData<List<News>> getAllNews();
+    @Query("SELECT * FROM NewsPiece ORDER BY id DESC")
+    LiveData<List<NewsPiece>> getAllNews();
 }
     //DELETE FROM news_table WHERE id IN (SELECT id FROM news_table ORDER BY id LIMIT 3);
     //DELETE FROM news_table WHERE id IN (SELECT id FROM news_table ORDER BY id LIMIT ((SELECT Count(*) FROM news_table) - 50));

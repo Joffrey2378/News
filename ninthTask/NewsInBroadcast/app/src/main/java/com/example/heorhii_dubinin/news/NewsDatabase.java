@@ -8,7 +8,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 
-@Database(entities = {News.class}, version = 1)
+@Database(entities = {NewsPiece.class}, version = 1)
 public abstract class NewsDatabase extends RoomDatabase {
 
     public static NewsDatabase instance;
@@ -42,7 +42,7 @@ public abstract class NewsDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            newsDao.insert(new News(
+            newsDao.insert(new NewsPiece(
                     null,
                     "This is a dummy item",
                     "Developer",

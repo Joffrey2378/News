@@ -27,7 +27,7 @@ import android.util.Log;
 //                if (jobCancelled) {
 //                    return;
 //                }
-//                Log.d(TAG, "News Updated");
+//                Log.d(TAG, "NewsPiece Updated");
 //        jobFinished(params, false);
 //    }
 //

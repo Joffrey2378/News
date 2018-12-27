@@ -9,7 +9,7 @@ import java.util.List;
 
 public class NewsViewModel extends AndroidViewModel {
     private NewsRepository repository;
-    private LiveData<List<News>> allNews;
+    private LiveData<List<NewsPiece>> allNews;
 
     public NewsViewModel(@NonNull Application application) {
         super(application);
@@ -17,15 +17,15 @@ public class NewsViewModel extends AndroidViewModel {
         allNews = repository.getAllNews();
     }
 
-    public void insert(News news) {
-        repository.insert(news);
+    public void insert(NewsPiece newsPiece) {
+        repository.insert(newsPiece);
     }
 
     public void deleteExtraNews() {
         repository.deleteExtraNews();
     }
 
-    public LiveData<List<News>> getAllNews() {
+    public LiveData<List<NewsPiece>> getAllNews() {
         return allNews;
     }
 }

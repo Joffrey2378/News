@@ -18,7 +18,7 @@ package com.example.heorhii_dubinin.news;
 //
 //public class NewsActivity extends AppCompatActivity implements NewsAdapter.OnItemClickListener {
 //
-//    private static final String TAG = "News";
+//    private static final String TAG = "NewsPiece";
 //    public static final String EXTRA_IMAGE = "imageUrl";
 //    public static final String EXTRA_TITLE = "title";
 //    public static final String EXTRA_SOURCE = "name";
@@ -31,7 +31,7 @@ package com.example.heorhii_dubinin.news;
 //    public static final String HTTPS_REQUEST_URL = "https://" +
 //            "newsapi.org/v2/top-headlines?country=ua&apiKey=eefa8f5b92b24ff7993231986bfa9a96";
 //    private RecyclerView.LayoutManager mLayoutManager;
-//    private ArrayList<News> mBrakingNews;
+//    private ArrayList<NewsPiece> mBrakingNews;
 //    private NewsAdapter mAdapter;
 //
 //    @Override
@@ -54,7 +54,7 @@ package com.example.heorhii_dubinin.news;
 //        MyAsync myAsync = new MyAsync(new MyAsync.IResultListener() {
 //            @Override
 //            public void onResult(String result) {
-//                List<News> breakingNews = QueryUtils.extractNews(result);
+//                List<NewsPiece> breakingNews = QueryUtils.extractNews(result);
 //                mBrakingNews.addAll(breakingNews);
 //                mAdapter.notifyDataSetChanged();
 //            }
@@ -101,7 +101,7 @@ package com.example.heorhii_dubinin.news;
 //    @Override
 //    public void onItemClick(int position) {
 //        Intent intentItemActivity = new Intent(this, ItemActivity.class);
-//        News clckedItem = mBrakingNews.get(position);
+//        NewsPiece clckedItem = mBrakingNews.get(position);
 //
 //        intentItemActivity.putExtra(EXTRA_IMAGE, clckedItem.getImage());
 //        intentItemActivity.putExtra(EXTRA_TITLE, clckedItem.getTitle());
