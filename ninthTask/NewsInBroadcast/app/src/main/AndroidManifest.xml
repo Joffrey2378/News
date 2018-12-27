@@ -4,7 +4,6 @@
     package="com.example.heorhii_dubinin.news">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
@@ -15,18 +14,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".NewsActivity">
+        <activity android:name=".ViewModelActivity">
+        <!--<activity android:name=".NewsActivity">-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ItemActivity"></activity>
+        <!--<activity android:name=".ItemActivity" />-->
 
-        <service
-            android:name=".MyJobService"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <!--<service-->
+            <!--android:name=".MyJobService"-->
+            <!--android:permission="android.permission.BIND_JOB_SERVICE" />-->
+
+        <!--<activity android:name=".ViewModelActivity"></activity>-->
     </application>
 
 </manifest>

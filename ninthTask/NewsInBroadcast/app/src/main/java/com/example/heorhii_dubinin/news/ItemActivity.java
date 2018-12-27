@@ -9,11 +9,11 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import static com.example.heorhii_dubinin.news.NewsActivity.EXTRA_DATE;
-import static com.example.heorhii_dubinin.news.NewsActivity.EXTRA_DESCRIPTION;
-import static com.example.heorhii_dubinin.news.NewsActivity.EXTRA_IMAGE;
-import static com.example.heorhii_dubinin.news.NewsActivity.EXTRA_SOURCE;
-import static com.example.heorhii_dubinin.news.NewsActivity.EXTRA_TITLE;
+import static com.example.heorhii_dubinin.news.ViewModelActivity.EXTRA_DATE;
+import static com.example.heorhii_dubinin.news.ViewModelActivity.EXTRA_DESCRIPTION;
+import static com.example.heorhii_dubinin.news.ViewModelActivity.EXTRA_IMAGE;
+import static com.example.heorhii_dubinin.news.ViewModelActivity.EXTRA_SOURCE;
+import static com.example.heorhii_dubinin.news.ViewModelActivity.EXTRA_TITLE;
 
 public class ItemActivity extends AppCompatActivity {
 
@@ -32,16 +32,16 @@ public class ItemActivity extends AppCompatActivity {
         String description = intent.getStringExtra(EXTRA_DESCRIPTION);
         String date = intent.getStringExtra(EXTRA_DATE);
 
-        ImageView imageView = findViewById(R.id.url_to_image);
-        TextView titleView = findViewById(R.id.title);
-        TextView sourceView = findViewById(R.id.name);
-        TextView descriptionView = findViewById(R.id.description);
-        TextView dateView = findViewById(R.id.published_at);
+//        ImageView imageView = findViewById(R.id.url_to_image);
+//        TextView titleView = findViewById(R.id.title);
+//        TextView sourceView = findViewById(R.id.name);
+//        TextView descriptionView = findViewById(R.id.description);
+//        TextView dateView = findViewById(R.id.published_at);
 
-        Picasso.with(this).load(imageUrl).placeholder(R.drawable.news_icon).fit().centerInside().into(imageView);
-        titleView.setText(title);
-        sourceView.setText(source);
-        descriptionView.setText(description);
-        dateView.setText(date);
+//        Picasso.with(this).load(imageUrl).placeholder(R.drawable.news_icon).fit().centerInside().into(imageView);
+//        titleView.setText(title);
+//        sourceView.setText(source);
+//        descriptionView.setText(description);
+//        dateView.setText(date);
     }
 }

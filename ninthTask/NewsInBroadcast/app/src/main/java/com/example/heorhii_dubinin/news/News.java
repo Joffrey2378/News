@@ -8,28 +8,28 @@ class News {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
-    private String mImage;
-    private String mTitle;
-    private String mSourceName;
-    private String mDescription;
-    private String mPublishedAt;
+    private String image;
+    private String title;
+    private String sourceName;
+    private String description;
+    private String publishedAt;
 
-    News(String mImage, String mTitle, String mSourceName, String mDescription, String mPublishedAt) {
-        this.mImage = mImage;
-        this.mTitle = mTitle;
-        this.mSourceName = mSourceName;
-        this.mDescription = mDescription;
-        this.mPublishedAt = mPublishedAt;
+    News(String image, String title, String sourceName, String description, String publishedAt) {
+        this.image = image;
+        this.title = title;
+        this.sourceName = sourceName;
+        this.description = description;
+        this.publishedAt = publishedAt;
     }
 
     @Override
     public String toString() {
         return "News{" +
-                "mImage='" + mImage + '\'' +
-                ", mTitle='" + mTitle + '\'' +
-                ", mSourceName='" + mSourceName + '\'' +
-                ", mDescription='" + mDescription + '\'' +
-                ", mPublishedAt='" + mPublishedAt + '\'' +
+                "image='" + image + '\'' +
+                ", title='" + title + '\'' +
+                ", sourceName='" + sourceName + '\'' +
+                ", description='" + description + '\'' +
+                ", publishedAt='" + publishedAt + '\'' +
                 '}';
     }
 
@@ -41,23 +41,71 @@ class News {
         this.id = id;
     }
 
-    String getmTitle() {
-        return mTitle;
+    public String getImage() {
+        return image;
     }
 
-    String getmImage() {
-        return mImage;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    String getmSourceName() {
-        return mSourceName;
+    public String getTitle() {
+        return title;
     }
 
-    String getmDescription() {
-        return mDescription;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    String getmPublishedAt() {
-        return mPublishedAt;
+    public String getSourceName() {
+        return sourceName;
     }
+
+    public void setSourceName(String sourceName) {
+        this.sourceName = sourceName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getPublishedAt() {
+        return publishedAt;
+    }
+
+    public void setPublishedAt(String publishedAt) {
+        this.publishedAt = publishedAt;
+    }
+
+//    public int getId() {
+//        return id;
+//    }
+//
+//    public void setId(int id) {
+//        this.id = id;
+//    }
+//
+//    public String getTitle() {
+//        return title;
+//    }
+//
+//    public String getImage() {
+//        return image;
+//    }
+//
+//    public String getSourceName() {
+//        return sourceName;
+//    }
+//
+//    public String getDescription() {
+//        return description;
+//    }
+//
+//    public String getPublishedAt() {
+//        return publishedAt;
+//    }
 }
