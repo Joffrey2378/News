@@ -51,10 +51,10 @@ package com.example.heorhii_dubinin.news;
 //        mAdapter.notifyDataSetChanged();
 //        mAdapter.setOnItemClickListener(NewsActivity.this);
 //
-//        MyAsync myAsync = new MyAsync(new MyAsync.IResultListener() {
+//        HttpRequestAsyncTask myAsync = new HttpRequestAsyncTask(new HttpRequestAsyncTask.IResultListener() {
 //            @Override
 //            public void onResult(String result) {
-//                List<ArticleEntity> breakingNews = QueryUtils.extractNews(result);
+//                List<ArticleEntity> breakingNews = ArticleStructure.extractNews(result);
 //                mBrakingNews.addAll(breakingNews);
 //                mAdapter.notifyDataSetChanged();
 //            }
@@ -64,19 +64,20 @@ package com.example.heorhii_dubinin.news;
 //            }
 //        });
 //        myAsync.execute(HTTPS_REQUEST_URL);
-//        scheduleJob();
+//
+//        fetchNewsPeriodically();
 //
 //        cancel = findViewById(R.id.cancel);
 //        cancel.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                cancelJob(v);
+//                cancelPeriodicFetching(v);
 //            }
 //        });
 //    }
 //
-//    public void scheduleJob() {
-//        ComponentName componentName = new ComponentName(this, MyJobService.class);
+//    public void fetchNewsPeriodically() {
+//        ComponentName componentName = new ComponentName(this, NewsFetchingJobScheduler.class);
 //        JobInfo info = new JobInfo.Builder(321, componentName)
 //                .setRequiresCharging(false)
 //                .setRequiredNetworkType(JobInfo.NETWORK_TYPE_UNMETERED)
@@ -92,7 +93,7 @@ package com.example.heorhii_dubinin.news;
 //        }
 //    }
 //
-//    public void cancelJob(View view) {
+//    public void cancelPeriodicFetching(View view) {
 //        JobScheduler scheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
 //        scheduler.cancel(123);
 //        Log.d(TAG, "Job cancelled");

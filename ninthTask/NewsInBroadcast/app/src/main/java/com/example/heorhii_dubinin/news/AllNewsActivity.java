@@ -29,10 +29,14 @@ public class AllNewsActivity extends AppCompatActivity {
     public static final String EXTRA_SOURCE = "name";
     public static final String EXTRA_DESCRIPTION = "description";
     public static final String EXTRA_DATE = "date";
+    public static final int PERIODICITY_OF_CHECKING_NEWS = 15 * 60 * 1000;
+    public static final int JOB_ID = 123;
+    public static final String HTTPS_REQUEST_URL = "https://" +
+            "newsapi.org/v2/top-headlines?country=ua&apiKey=eefa8f5b92b24ff7993231986bfa9a96";
 
     private NewsViewModel newsViewModel;
 
-    Button cancelJob;
+    private Button cancelJob;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +54,22 @@ public class AllNewsActivity extends AppCompatActivity {
 
         prepareDataToIntent(adapter);
 
-        scheduleJob();
+
+        HttpRequestAsyncTask httpRequestAsyncTask = new HttpRequestAsyncTask(new HttpRequestAsyncTask.IResultListener() {
+            @Override
+            public void onResult(String result) {
+                List<ArticleEntity> breakingNews = ArticleStructure.extractNews(result);
+                breakingNews.addAll(breakingNews);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onError(String error) {
+            }
+        });
+        httpRequestAsyncTask.execute(HTTPS_REQUEST_URL);
+
+        fetchNewsPeriodically();
 
         cancelButtonFunctions();
     }
@@ -60,7 +79,7 @@ public class AllNewsActivity extends AppCompatActivity {
         cancelJob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cancelJob(v);
+                cancelPeriodicFetching(v);
             }
         });
     }
@@ -93,29 +112,30 @@ public class AllNewsActivity extends AppCompatActivity {
         });
     }
 
-    public void scheduleJob() {
-        ComponentName componentName = new ComponentName(this, MyJobService.class);
-        JobInfo info = new JobInfo.Builder(321, componentName)
+    public void fetchNewsPeriodically() {
+        ComponentName componentName = new ComponentName(this, NewsFetchingJobScheduler.class);
+        JobInfo info = new JobInfo.Builder(JOB_ID, componentName)
                 .setRequiresCharging(false)
                 .setRequiredNetworkType(JobInfo.NETWORK_TYPE_UNMETERED)
                 .setPersisted(true)
-                .setPeriodic(15 * 60 * 1000)
+                .setPeriodic(PERIODICITY_OF_CHECKING_NEWS)
                 .build();
         JobScheduler newsScheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
         int resultCode = newsScheduler.schedule(info);
         if (resultCode == JobScheduler.RESULT_SUCCESS) {
-            Log.d(TAG, "Job scheduled");
-            Toast.makeText(this, "Job scheduled", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "Subscription created");
+            Toast.makeText(this, "Subscribed for news", Toast.LENGTH_SHORT).show();
         } else {
-            Log.d(TAG, "Job scheduling failed");
-            Toast.makeText(this, "Job scheduling failed", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "Subscription failed");
+            Toast.makeText(this, "Subscription failed", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void cancelJob(View view) {
+    public void cancelPeriodicFetching(View view) {
         JobScheduler scheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
-        scheduler.cancel(123);
-        Log.d(TAG, "Job cancelled");
+        scheduler.cancel(JOB_ID);
+        Toast.makeText(this, "Articles will not update anymore", Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "Cancel subscription");
     }
 
 }

@@ -25,7 +25,7 @@
         <activity android:name="com.example.heorhii_dubinin.news.ItemActivity" />
 
         <service
-            android:name="com.example.heorhii_dubinin.news.MyJobService"
+            android:name="com.example.heorhii_dubinin.news.NewsFetchingJobScheduler"
             android:permission="android.permission.BIND_JOB_SERVICE" />
     </application>
 

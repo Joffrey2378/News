@@ -12,9 +12,10 @@ import android.util.Log;
 
 import com.example.heorhii_dubinin.articleEntities.R;
 
-public class MyJobService extends JobService {
+public class NewsFetchingJobScheduler extends JobService {
 
     public static final String TAG = "JobService";
+    public static final int REQUEST_CODE = 333;
     private boolean jobCancelled = false;
 
     @Override
@@ -45,7 +46,7 @@ public class MyJobService extends JobService {
 
         Intent intent = new Intent(context, AllNewsActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 333, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, REQUEST_CODE, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
