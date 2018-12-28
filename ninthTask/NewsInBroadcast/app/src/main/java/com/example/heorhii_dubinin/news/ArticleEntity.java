@@ -2,9 +2,10 @@ package com.example.heorhii_dubinin.news;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
 @Entity(tableName = "news_table")
-class NewsPiece {
+class ArticleEntity {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -14,7 +15,7 @@ class NewsPiece {
     private String description;
     private String publishedAt;
 
-    NewsPiece(String image, String title, String sourceName, String description, String publishedAt) {
+    ArticleEntity(String image, String title, String sourceName, String description, String publishedAt) {
         this.image = image;
         this.title = title;
         this.sourceName = sourceName;
@@ -46,7 +47,7 @@ class NewsPiece {
         this.title = title;
     }
 
-    public String getSourceName() {
+    String getSourceName() {
         return sourceName;
     }
 
@@ -70,9 +71,10 @@ class NewsPiece {
         this.publishedAt = publishedAt;
     }
 
+    @NonNull
     @Override
     public String toString() {
-        return "NewsPiece{" +
+        return "ArticleEntity{" +
                 "image='" + image + '\'' +
                 ", title='" + title + '\'' +
                 ", sourceName='" + sourceName + '\'' +

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.heorhii_dubinin.articleEntities.R;
 import com.squareup.picasso.Picasso;
 
 import static com.example.heorhii_dubinin.news.AllNewsActivity.EXTRA_DATE;
@@ -25,6 +26,10 @@ public class ItemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_item);
         Log.d(TAG, "onCreate: started");
 
+        getPrepaeViews();
+    }
+
+    private void getPrepaeViews() {
         Intent intent = getIntent();
         String imageUrl = intent.getStringExtra(EXTRA_IMAGE);
         String title = intent.getStringExtra(EXTRA_TITLE);

@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.heorhii_dubinin.articleEntities.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
 
     private OnItemClickListener listener;
 
-    private List<NewsPiece> breakingNews = new ArrayList<>();
+    private List<ArticleEntity> breakingNews = new ArrayList<>();
     private Context context;
 
     @NonNull
@@ -33,13 +35,13 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull NewsHolder newsHolder, int i) {
-        NewsPiece currentNewsPiece = breakingNews.get(i);
+        ArticleEntity currentArticleEntity = breakingNews.get(i);
 //        Picasso.with(context)
-//                .load(currentNewsPiece.getImage())
+//                .load(currentArticleEntity.getImage())
 //                .placeholder(R.drawable.news_icon)
 //                .into(newsHolder.imageView);
 
-        newsHolder.titleView.setText((currentNewsPiece.getTitle()));
+        newsHolder.titleView.setText((currentArticleEntity.getTitle()));
     }
 
     @Override
@@ -47,12 +49,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
         return breakingNews.size();
     }
 
-    public void setBreakingNews(List<NewsPiece> breakingNews) {
+    void setBreakingNews(List<ArticleEntity> breakingNews) {
         this.breakingNews = breakingNews;
         notifyDataSetChanged();
     }
 
-//    NewsAdapter(ArrayList<NewsPiece> breakingNews, Context context) {
+//    NewsAdapter(ArrayList<ArticleEntity> breakingNews, Context context) {
 //        this.breakingNews = breakingNews;
 //        this.context = context;
 //    }
@@ -62,7 +64,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
     }
 
     public interface OnItemClickListener {
-        void onItemClick(NewsPiece newsPiece);
+        void onItemClick(ArticleEntity articleEntity);
     }
 
     class NewsHolder extends RecyclerView.ViewHolder {

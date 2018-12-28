@@ -33,9 +33,9 @@ import java.util.ArrayList;
 ////            "{\"source\":{\"id\":null,\"name\":\"Radiosvoboda.org\"},\"author\":\"Марія Щур\",\"title\":\"Окупований Крим і скандал довкола прем'єра Чехії: син готовий свідчити проти батька\",\"description\":\"Протопопов хотів відмовити Енді від подорожі: «Кривий Ріг – це ж не земля обітована».\",\"url\":\"https://www.radiosvoboda.org/a/29602835.html\",\"urlToImage\":\"https://gdb.rferl.org/A1B81C45-E5D9-4336-B520-9E1D94A03F8A_cx0_cy3_cw0_w1200_r1_s.jpg\",\"publishedAt\":\"2018-11-15T19:13:47Z\",\"content\":\"Син чеського прем’єр-міністра Андрей Бабіш-молодший звинувачує свого батька у брехні та каже, що готовий свідчити у справі свого «викрадення». Бабіш-молодший стверджує, що його батько вигадує, ніби він є психічно хворий. Про це Андрей Бабіш-молодший написав в… [+10587 chars]\"}," +
 ////            "{\"source\":{\"id\":null,\"name\":\"Zik.ua\"},\"author\":null,\"title\":\"Головний рабин України наполягає, що за синагогою стежило таки НАБУ\",\"description\":null,\"url\":\"https://zik.ua/news/2018/11/15/golovnyy_rabyn_ukrainy_napolyagaie_shcho_za_synagogoyu_stezhylo_nabu_1449095\",\"urlToImage\":null,\"publishedAt\":\"2018-11-15T18:36:00Z\",\"content\":null}]}";
 //
-//    static ArrayList<NewsPiece> extractNews(String json) {
+//    static ArrayList<ArticleEntity> extractNews(String json) {
 //
-//        ArrayList<NewsPiece> breakingNews = new ArrayList<>();
+//        ArrayList<ArticleEntity> breakingNews = new ArrayList<>();
 //
 //        try {
 //            JSONObject baseJsonResponse = new JSONObject(json);
@@ -49,7 +49,7 @@ import java.util.ArrayList;
 //                String description = currentNews.getString("description");
 //                String publishedAt = currentNews.getString("publishedAt");
 //
-//                NewsPiece news = new NewsPiece(urlToImage, title, sourceName, description, publishedAt);
+//                ArticleEntity news = new ArticleEntity(urlToImage, title, sourceName, description, publishedAt);
 //                breakingNews.add(news);
 //            }
 //            Log.d(TAG, "extractNews: " + breakingNews.size());

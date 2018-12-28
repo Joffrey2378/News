@@ -4,23 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NewsActivity">
-
-    <!--<Button-->
-    <!--android:id="@+id/schedule"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginTop="8dp"-->
-    <!--android:background="@android:color/holo_green_light"-->
-    <!--app:layout_constraintEnd_toStartOf="@+id/cancel"-->
-    <!--app:layout_constraintHorizontal_bias="0.5"-->
-    <!--app:layout_constraintStart_toStartOf="parent"-->
-    <!--app:layout_constraintTop_toTopOf="parent" />-->
+    tools:context="com.example.heorhii_dubinin.news.AllNewsActivity">
 
     <Button
         android:id="@+id/cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:text="@string/cancel_subscription"
+        android:textColor="@android:color/white"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:background="@android:color/holo_red_dark"

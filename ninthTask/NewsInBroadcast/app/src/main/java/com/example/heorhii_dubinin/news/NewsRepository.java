@@ -6,10 +6,10 @@ import android.os.AsyncTask;
 
 import java.util.List;
 
-public class NewsRepository {
+class NewsRepository {
 
     private NewsDao newsDao;
-    private LiveData<List<NewsPiece>> allNews;
+    private LiveData<List<ArticleEntity>> allNews;
 
     NewsRepository(Application application) {
         NewsDatabase database = NewsDatabase.getInstance(application);
@@ -17,22 +17,19 @@ public class NewsRepository {
         allNews = newsDao.getAllNews();
     }
 
-    public void insert(NewsPiece newsPiece) {
-        new InsertNewsAsyncTask(newsDao).execute(newsPiece);
+    void insert(ArticleEntity articleEntity) {
+        new InsertNewsAsyncTask(newsDao).execute(articleEntity);
     }
 
-//    public void update(NewsPiece news) {}
-//    public void delete(NewsPiece news) {}
-
-    public void deleteExtraNews() {
+    void deleteExtraNews() {
         new DeleteExtraNewsAsyncTask(newsDao).execute();
     }
 
-    public LiveData<List<NewsPiece>> getAllNews() {
+    LiveData<List<ArticleEntity>> getAllNews() {
         return allNews;
     }
 
-    private static class InsertNewsAsyncTask extends AsyncTask<NewsPiece, Void, Void> {
+    private static class InsertNewsAsyncTask extends AsyncTask<ArticleEntity, Void, Void> {
         private NewsDao newsDao;
 
         private InsertNewsAsyncTask(NewsDao newsDao) {
@@ -40,8 +37,8 @@ public class NewsRepository {
         }
 
         @Override
-        protected Void doInBackground(NewsPiece... newsPieces) {
-            newsDao.insert(newsPieces[0]);
+        protected Void doInBackground(ArticleEntity... articleEntities) {
+            newsDao.insert(articleEntities[0]);
             return null;
         }
     }
