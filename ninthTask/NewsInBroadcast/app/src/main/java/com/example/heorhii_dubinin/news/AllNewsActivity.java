@@ -29,7 +29,7 @@ public class AllNewsActivity extends AppCompatActivity {
     public static final String EXTRA_SOURCE = "name";
     public static final String EXTRA_DESCRIPTION = "description";
     public static final String EXTRA_DATE = "date";
-    public static final int PERIODICITY_OF_CHECKING_NEWS = 15 * 60 * 1000;
+    public static final int PERIODICITY_OF_CHECKING_NEWS = 900000;
     public static final int JOB_ID = 123;
     public static final String HTTPS_REQUEST_URL = "https://" +
             "newsapi.org/v2/top-headlines?country=ua&apiKey=eefa8f5b92b24ff7993231986bfa9a96";

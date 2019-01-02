@@ -26,10 +26,10 @@ public class ItemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_item);
         Log.d(TAG, "onCreate: started");
 
-        getPrepaeViews();
+        getPrepareViews();
     }
 
-    private void getPrepaeViews() {
+    private void getPrepareViews() {
         Intent intent = getIntent();
         String imageUrl = intent.getStringExtra(EXTRA_IMAGE);
         String title = intent.getStringExtra(EXTRA_TITLE);
