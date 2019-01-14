@@ -1,4 +1,4 @@
-package com.example.heorhii_dubinin.news;
+package com.example.heorhii_dubinin.news.ui;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.heorhii_dubinin.articleEntities.R;
+import com.example.heorhii_dubinin.news.persistence.ArticleEntity;
 
 import java.util.ArrayList;
 import java.util.List;

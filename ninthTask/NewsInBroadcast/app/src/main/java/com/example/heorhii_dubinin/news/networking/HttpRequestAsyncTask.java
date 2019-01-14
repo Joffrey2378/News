@@ -1,4 +1,4 @@
-package com.example.heorhii_dubinin.news;
+package com.example.heorhii_dubinin.news.networking;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -15,7 +15,7 @@ public class HttpRequestAsyncTask extends AsyncTask<String, Integer, String> {
     private static final String LOG_TAG = HttpRequestAsyncTask.class.getSimpleName();
     private IResultListener listener;
 
-    HttpRequestAsyncTask(IResultListener listener) {
+    public HttpRequestAsyncTask(IResultListener listener) {
         this.listener = listener;
     }
 

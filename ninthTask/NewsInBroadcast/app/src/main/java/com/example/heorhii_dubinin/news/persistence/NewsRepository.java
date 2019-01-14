@@ -1,4 +1,4 @@
-package com.example.heorhii_dubinin.news;
+package com.example.heorhii_dubinin.news.persistence;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
@@ -6,26 +6,26 @@ import android.os.AsyncTask;
 
 import java.util.List;
 
-class NewsRepository {
+public class NewsRepository {
 
     private NewsDao newsDao;
     private LiveData<List<ArticleEntity>> allNews;
 
-    NewsRepository(Application application) {
+    public NewsRepository(Application application) {
         NewsDatabase database = NewsDatabase.getInstance(application);
         newsDao = database.newsDao();
         allNews = newsDao.getAllNews();
     }
 
-    void insert(ArticleEntity articleEntity) {
+    public void insert(ArticleEntity articleEntity) {
         new InsertNewsAsyncTask(newsDao).execute(articleEntity);
     }
 
-    void deleteExtraNews() {
+    public void deleteExtraNews() {
         new DeleteExtraNewsAsyncTask(newsDao).execute();
     }
 
-    LiveData<List<ArticleEntity>> getAllNews() {
+    public LiveData<List<ArticleEntity>> getAllNews() {
         return allNews;
     }
 

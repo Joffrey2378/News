@@ -1,4 +1,4 @@
-package com.example.heorhii_dubinin.news;
+package com.example.heorhii_dubinin.news.ui;
 
 //
 //import android.app.job.JobInfo;
@@ -54,7 +54,7 @@ package com.example.heorhii_dubinin.news;
 //        HttpRequestAsyncTask myAsync = new HttpRequestAsyncTask(new HttpRequestAsyncTask.IResultListener() {
 //            @Override
 //            public void onResult(String result) {
-//                List<ArticleEntity> breakingNews = ArticleStructure.extractNews(result);
+//                List<ArticleEntity> breakingNews = ArticleStructure.newsExtractFromJson(result);
 //                mBrakingNews.addAll(breakingNews);
 //                mAdapter.notifyDataSetChanged();
 //            }

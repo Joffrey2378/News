@@ -1,11 +1,11 @@
-package com.example.heorhii_dubinin.news;
+package com.example.heorhii_dubinin.news.persistence;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
 @Entity(tableName = "news_table")
-class ArticleEntity {
+public class ArticleEntity {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -15,7 +15,7 @@ class ArticleEntity {
     private String description;
     private String publishedAt;
 
-    ArticleEntity(String image, String title, String sourceName, String description, String publishedAt) {
+    public ArticleEntity(String image, String title, String sourceName, String description, String publishedAt) {
         this.image = image;
         this.title = title;
         this.sourceName = sourceName;
@@ -47,7 +47,7 @@ class ArticleEntity {
         this.title = title;
     }
 
-    String getSourceName() {
+    public String getSourceName() {
         return sourceName;
     }
 

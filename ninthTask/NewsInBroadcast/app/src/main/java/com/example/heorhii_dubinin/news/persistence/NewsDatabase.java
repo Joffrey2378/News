@@ -1,4 +1,4 @@
-package com.example.heorhii_dubinin.news;
+package com.example.heorhii_dubinin.news.persistence;
 
 import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;

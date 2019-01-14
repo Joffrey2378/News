@@ -1,9 +1,12 @@
-package com.example.heorhii_dubinin.news;
+package com.example.heorhii_dubinin.news.ui;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.support.annotation.NonNull;
+
+import com.example.heorhii_dubinin.news.persistence.ArticleEntity;
+import com.example.heorhii_dubinin.news.persistence.NewsRepository;
 
 import java.util.List;
 

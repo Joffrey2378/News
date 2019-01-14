@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.example.heorhii_dubinin.news.AllNewsActivity">
+        <activity android:name="com.example.heorhii_dubinin.news.ui.AllNewsActivity">
         <!--<activity android:name=".NewsActivity">-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,10 +23,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.heorhii_dubinin.news.ItemActivity" />
+        <activity android:name="com.example.heorhii_dubinin.news.ui.ItemActivity" />
 
         <service
-            android:name="com.example.heorhii_dubinin.news.NewsFetchingJobScheduler"
+            android:name="com.example.heorhii_dubinin.news.ui.NewsFetchingJobScheduler"
             android:permission="android.permission.BIND_JOB_SERVICE" />
     </application>
 

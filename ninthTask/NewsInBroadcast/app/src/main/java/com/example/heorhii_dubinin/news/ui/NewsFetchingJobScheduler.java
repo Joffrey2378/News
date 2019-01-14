@@ -1,4 +1,4 @@
-package com.example.heorhii_dubinin.news;
+package com.example.heorhii_dubinin.news.ui;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;

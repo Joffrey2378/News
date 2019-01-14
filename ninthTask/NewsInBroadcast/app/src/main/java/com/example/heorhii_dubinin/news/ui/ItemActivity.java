@@ -1,4 +1,4 @@
-package com.example.heorhii_dubinin.news;
+package com.example.heorhii_dubinin.news.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,11 +10,11 @@ import android.widget.TextView;
 import com.example.heorhii_dubinin.articleEntities.R;
 import com.squareup.picasso.Picasso;
 
-import static com.example.heorhii_dubinin.news.AllNewsActivity.EXTRA_DATE;
-import static com.example.heorhii_dubinin.news.AllNewsActivity.EXTRA_DESCRIPTION;
-import static com.example.heorhii_dubinin.news.AllNewsActivity.EXTRA_IMAGE;
-import static com.example.heorhii_dubinin.news.AllNewsActivity.EXTRA_SOURCE;
-import static com.example.heorhii_dubinin.news.AllNewsActivity.EXTRA_TITLE;
+import static com.example.heorhii_dubinin.news.ui.AllNewsActivity.EXTRA_DATE;
+import static com.example.heorhii_dubinin.news.ui.AllNewsActivity.EXTRA_DESCRIPTION;
+import static com.example.heorhii_dubinin.news.ui.AllNewsActivity.EXTRA_IMAGE;
+import static com.example.heorhii_dubinin.news.ui.AllNewsActivity.EXTRA_SOURCE;
+import static com.example.heorhii_dubinin.news.ui.AllNewsActivity.EXTRA_TITLE;
 
 public class ItemActivity extends AppCompatActivity {
 
