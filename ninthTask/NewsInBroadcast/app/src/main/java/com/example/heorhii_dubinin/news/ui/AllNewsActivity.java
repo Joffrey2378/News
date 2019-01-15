@@ -19,13 +19,13 @@ import com.example.heorhii_dubinin.articleEntities.R;
 public class AllNewsActivity extends AppCompatActivity {
 
     private static final String TAG = "AllNewsActivity";
-    //    public static final String EXTRA_ID = "id";
+    public static final String EXTRA_ID = "id";
     public static final String EXTRA_IMAGE = "imageUrl";
     public static final String EXTRA_TITLE = "title";
     public static final String EXTRA_SOURCE = "name";
     public static final String EXTRA_DESCRIPTION = "description";
     public static final String EXTRA_DATE = "date";
-    public static final int PERIODICITY_OF_CHECKING_NEWS = 900000;
+    public static final int PERIODICITY_OF_CHECKING_NEWS = 1800000;
     public static final int JOB_ID = 123;
 
     private NewsViewModel newsViewModel;
@@ -67,7 +67,7 @@ public class AllNewsActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(articleEntity -> {
             Intent dataForItemActivity = new Intent(AllNewsActivity.this, ItemActivity.class);
 
-//                dataForItemActivity.putExtra(EXTRA_IMAGE, articleEntity.getId());
+            dataForItemActivity.putExtra(EXTRA_IMAGE, articleEntity.getId());
             dataForItemActivity.putExtra(EXTRA_IMAGE, articleEntity.getImage());
             dataForItemActivity.putExtra(EXTRA_TITLE, articleEntity.getTitle());
             dataForItemActivity.putExtra(EXTRA_SOURCE, articleEntity.getSourceName());

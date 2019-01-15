@@ -1,6 +1,5 @@
 package com.example.heorhii_dubinin.news.ui;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.heorhii_dubinin.articleEntities.R;
 import com.example.heorhii_dubinin.news.persistence.ArticleEntity;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
     private OnItemClickListener listener;
 
     private List<ArticleEntity> breakingNews = new ArrayList<>();
-    private Context context;
 
     @NonNull
     @Override
@@ -37,10 +36,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
     @Override
     public void onBindViewHolder(@NonNull NewsHolder newsHolder, int i) {
         ArticleEntity currentArticleEntity = breakingNews.get(i);
-//        Picasso.with(context)
-//                .load(currentArticleEntity.getImage())
-//                .placeholder(R.drawable.news_icon)
-//                .into(newsHolder.imageView);
+        Picasso.with(newsHolder.itemView.getContext())
+                .load(currentArticleEntity.getImage())
+                .placeholder(R.drawable.news_icon)
+                .into(newsHolder.imageView);
 
         newsHolder.titleView.setText((currentArticleEntity.getTitle()));
     }
@@ -54,11 +53,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
         this.breakingNews = breakingNews;
         notifyDataSetChanged();
     }
-
-//    NewsAdapter(ArrayList<ArticleEntity> breakingNews, Context context) {
-//        this.breakingNews = breakingNews;
-//        this.context = context;
-//    }
 
     void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
@@ -78,13 +72,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
         NewsHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    if (listener != null && position != RecyclerView.NO_POSITION) {
-                        listener.onItemClick(breakingNews.get(position));
-                    }
+            itemView.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+                if (listener != null && position != RecyclerView.NO_POSITION) {
+                    listener.onItemClick(breakingNews.get(position));
                 }
             });
         }

@@ -45,7 +45,6 @@ public class NewsViewModel extends AndroidViewModel {
             @Override
             public void onResult(String result) {
                 List<ArticleEntity> breakingNews = ArticleStructure.newsExtractFromJson(result);
-//                breakingNews.addAll(breakingNews);
                 for (ArticleEntity article : breakingNews) {
                     insert(article);
                 }
