@@ -15,11 +15,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.heorhii_dubinin.articleEntities.R;
-import com.example.heorhii_dubinin.news.networking.ArticleStructure;
-import com.example.heorhii_dubinin.news.networking.HttpRequestAsyncTask;
-import com.example.heorhii_dubinin.news.persistence.ArticleEntity;
-
-import java.util.List;
 
 public class AllNewsActivity extends AppCompatActivity {
 
@@ -32,8 +27,6 @@ public class AllNewsActivity extends AppCompatActivity {
     public static final String EXTRA_DATE = "date";
     public static final int PERIODICITY_OF_CHECKING_NEWS = 900000;
     public static final int JOB_ID = 123;
-    public static final String HTTPS_REQUEST_URL = "https://" +
-            "newsapi.org/v2/top-headlines?country=ua&apiKey=eefa8f5b92b24ff7993231986bfa9a96";
 
     private NewsViewModel newsViewModel;
 
@@ -55,27 +48,9 @@ public class AllNewsActivity extends AppCompatActivity {
 
         prepareDataToIntent(adapter);
 
-        httpRequest(adapter);
-
         fetchNewsPeriodically();
 
         cancelButtonFunctions();
-    }
-
-    private void httpRequest(NewsAdapter adapter) {
-        HttpRequestAsyncTask httpRequestAsyncTask = new HttpRequestAsyncTask(new HttpRequestAsyncTask.IResultListener() {
-            @Override
-            public void onResult(String result) {
-                List<ArticleEntity> breakingNews = ArticleStructure.newsExtractFromJson(result);
-                breakingNews.addAll(breakingNews);
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onError(String error) {
-            }
-        });
-        httpRequestAsyncTask.execute(HTTPS_REQUEST_URL);
     }
 
     private void cancelButtonFunctions() {
